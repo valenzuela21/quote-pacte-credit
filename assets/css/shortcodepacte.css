@@ -1,0 +1,567 @@
+@import "dropzone.css";
+.form-group{
+    margin-bottom: 0px!important;
+}
+pre, fieldset, input, textarea, table, table *, hr{
+        border:0px!important
+}
+
+/* Chrome, Safari, Edge, Opera */
+.formQuote input::-webkit-outer-spin-button,
+.formQuote input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.formQuote input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.formQuote .btn-backForm{
+    background: transparent;
+    text-decoration: none;
+    color: #070c36;
+    border: 0px;
+    font-weight: 700;
+    box-shadow: none;
+}
+
+.formQuote .btn-backForm:hover{
+    color:#fa5d15;
+}
+
+.formQuote .btn-backForm:active:focus{
+    background: transparent!important;
+    box-shadow: none!important;
+    color: #070c36!important;
+}
+
+
+.formQuote{
+    font-family: 'Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    animation-name:  animated_form;
+    animation-duration: 1s; 
+    position: relative; 
+}
+
+.formQuote .animateForm{
+    animation-name:  animated_form;
+    animation-duration: 1s; 
+    position: relative; 
+}
+
+.columnTableRight .txt-right{
+    margin: 0px;
+    padding: 0px;
+    text-align: right;
+}
+
+.columnTableLeft .txt-right{
+    margin: 0px;
+    padding: 0px;
+    text-align: right;
+}
+
+.formQuote .inputFormQuote{
+    font-size: 24px !important;
+    padding: 10px 20px;
+    border-radius: 0px!important;
+    font-weight: 300;
+    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	display: block;
+	width: 100%;
+	padding: 7px;
+	border: none;
+	border-bottom: 1px solid #d5d5d5 !important;
+	background: transparent;
+    margin-bottom: 0px;
+    height: 45px;
+    margin-top: -20px;
+    color:#090e45;
+    font-family: "Inter var", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.formQuote .inputFormQuote:focus{
+    border-bottom: 1px solid #070c36 !important;
+}
+
+.formQuote .inputFormQuoteInfo{
+    font-size: 16px !important;
+    padding: 10px 20px;
+    border-radius: 0px!important;
+    font-weight: 300;
+    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	display: block;
+	width: 100%;
+	padding: 7px;
+	border: none;
+	border-bottom: 1px solid #d5d5d5 !important;
+	background: transparent;
+    margin-bottom: 0px;
+    height: 45px!important;
+    margin-top: -20px;
+    color:#090e45;
+    font-family: "Inter var", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.formQuote .btnFormQuote{
+    padding: 10px;
+    margin-top: 10px!important;
+    font-size: 16px !important;
+    background: #070c36;
+    border: none;
+}
+
+.formQuote .btnFormQuote:hover{
+    padding: 10px;
+    font-size: 16px !important;
+    background: #fa5d15;
+    border: none;
+}
+
+.formQuote .labelFormQuote{
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+    color: #090e45;
+}
+
+.formQuote .labelFormQuoteInfo{
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+    color: #090e45;
+}
+
+
+.file-display-container .close-file{
+    background-image: url('../img/close.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.container-form-quote .listItem.activeTab .icon-upload{
+    background-image: url('../img/upload_icon.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin-right: 10px;
+}
+
+.container-form-quote .icon-info{
+    background-image: url('../img/info-not.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 80px;
+    height: 80px;
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.container-form-quote .listItem .icon-upload{
+    background-image: url('../img/upload_icon_hover.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin-right: 10px;
+}
+
+
+.container-form-quote .image-logo-quota{
+    display: block;
+    text-align: center;
+    margin: auto;
+    animation: pulse 4s;
+    width: 87%;
+}
+.container-form-quote .btnTabForm{
+    font-size: 14px;
+    background: #fff;
+    color: #090e45;
+    border: 1px solid #090e45;
+    margin-bottom: 10px;
+    text-align: center;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    height: 160px;    
+}
+
+.container-form-quote .btnTabForm:hover{
+    font-size: 14px;
+    background: #f7f7f7;
+    color:#db5d22;
+    border: 1px solid #db5d22;
+    margin-bottom: 10px;
+}
+
+.container-form-quote .btnTabForm:active{
+    background: #f7f7f7!important;
+    color:#db5d22!important;
+    border: 1px solid #db5d22!important;
+}
+
+.container-form-quote .btnTabForm.active{
+    background: #f7f7f7!important;
+    color:#db5d22!important;
+    text-decoration: none!important;
+    border:1px solid #db5d22!important;
+}
+
+.container-form-quote .btnTabForm.active  .icon-free-order{
+    background-image: url("../img/freeorderhover.svg");
+}
+
+.container-form-quote .btnTabForm.active  .icon-free-investment{
+    background-image: url("../img/investmenthover.svg");
+}
+
+.container-form-quote .btnTabForm.active  .icon-micro-credit{
+    background-image: url("../img/microcreditohover.svg");
+}
+
+.container-form-quote .icon-micro-credit{
+    background-image: url("../img/microcredito.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    height: 90px;
+    width: 90px;
+    margin: auto;
+}
+
+.container-form-quote .btnTabForm:hover .icon-micro-credit{
+    background-image: url("../img/microcreditohover.svg");
+}
+
+
+.container-form-quote .icon-free-investment{
+    background-image: url("../img/investment.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    height: 90px;
+    width: 90px;
+    margin: auto;
+}
+
+.container-form-quote .btnTabForm:hover .icon-free-investment{
+    background-image: url("../img/investmenthover.svg");
+}
+
+.container-form-quote .icon-free-order{
+    background-image: url("../img/freeorder.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    height: 90px;
+    width: 90px;
+    margin: auto;
+}
+
+.container-form-quote .btnTabForm:hover .icon-free-order{
+    background-image: url("../img/freeorderhover.svg");
+}
+
+
+.container-form-quote .columnSliderLeft{
+    max-width: 19%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+     align-items: center;
+     padding: 0px;
+}
+
+.container-form-quote .columnSliderRigth{
+    max-width: 20%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+.container-form-quote .columnSliderCenter{
+     max-width: 100%;
+
+}
+
+.formQuote .labelRigtResult{
+    background: #db5c22;
+    width: 120px;
+    text-align: center;
+    border-radius: 4px;
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    padding: 5px 10px;
+    color: white;
+    float: right;
+    font-size: 14px;
+	font-weight: bold;
+	margin-top:-6px
+}
+
+.formQuote  .labelContainer{
+    padding: 13px 0px;
+    padding-top: 0px;
+}
+
+.formQuote .list-group-name .listItem{
+    font-size: 12px;
+    margin: 2px;
+    background: #eaeaea;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    cursor: pointer;
+    display: flex;
+}
+
+.formQuote .list-group-name .listItem.activeTab{
+    background: #070c36;
+    color:#fff;
+    border: 1px solid  #070c36;
+}
+
+.noUi-connect{
+    background: #db5d21!important;
+}
+
+.startTablePressing{
+    background: rgb(219, 219, 219);
+    padding: 10px;
+}
+
+.endTablePressing{
+    background: rgb(236, 236, 236);
+    padding: 10px;
+}
+
+.startTablePressing table{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.endTablePressing table{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.startTablePressing .columnTableLeft{
+     width: 160px;
+}
+
+.endTablePressing .columnTableLeft{
+    width: 160px;
+}
+
+.txtNote{
+    font-size: 14px;
+    padding: 10px;
+    text-align: left!important;
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+.textmessage{
+    font-size: 12px;
+}
+
+.contentInfoservice{
+    margin-top: 18px;
+}
+
+.contentInfoservice2{
+    margin-top: 18px;
+}
+
+.contentInfoservice .titelInvertion{
+    font-size: 28px;
+    margin: 0px!important;
+    text-transform: uppercase;
+    color: #070c36;
+    margin-bottom: 5px !important;
+}
+
+.contentInfoservice .txtsubInvertion{
+    font-size: 12px;
+    text-align: left!important;
+    color: #070c36;
+}
+
+.startTablePressing .font-size-20{
+    font-size: 18px;
+	color: #db5c22;
+}
+
+.contentInfoservice2 .titelInvertion{
+    font-size: 24px;
+    margin: 0px!important;
+    text-transform: uppercase;
+    color: #070c36;
+    margin-bottom: 5px !important;
+}
+
+.contentInfoservice2 .txtsubInvertion{
+    font-size: 12px;
+    text-align: left!important;
+    color: #070c36;
+}
+
+.contentFormQuote .txtoption{
+    font-size: 18px;
+}
+
+
+.content-table-result{
+    padding: 20px;
+}
+
+.swal-button-container {
+    margin: auto!important;
+    position: relative!important;
+    display: block!important;
+    text-align: center;
+}
+.swal-button{
+    background-color:#040720!important;
+    text-decoration:none!important
+}
+.swal-button:not([disabled]):hover {
+    background-color:#d95a24!important
+}
+.swal-text{
+    text-align: center;
+}
+.note_form{
+    font-size: 12px;
+    text-align: left!important;
+    background: #070c36;
+    padding: 5px;
+    margin: 0px;
+    color: #ffffff;
+    padding-left: 10px;
+}
+
+@media only screen and (max-width: 990px) {
+
+    .contentInfoservice .titelInvertion{
+        font-size: 20px;
+    }
+
+    .startTablePressing .columnTableLeft{
+        width: 148px;
+   }
+   
+   .endTablePressing .columnTableLeft{
+       width: 148px;
+   }
+   .startTablePressing .font-size-20{
+    font-size:18px;
+    }
+
+  }
+@media only screen and (max-width: 790px) {
+    .container-form-quote .image-logo-quota{
+        display: none;
+    }
+    .startTablePressing .font-size-20{
+        font-size:16px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+
+    .startTablePressing table td{
+        font-size: 12px;
+    }
+
+    .endTablePressing table td{
+        font-size: 12px;
+    }
+
+    .startTablePressing .columnTableLeft{
+      width: 40%;
+   }
+   
+   .endTablePressing .columnTableLeft{
+      width: 40%;
+   }
+   
+    .container-form-quote .image-logo-quota{
+        display: none;
+    }
+  
+    .formQuote .labelFormQuote{
+        font-size: 14px;
+    }
+
+    .container-form-quote .columnSliderRigth{
+        padding: 0px;
+    }
+
+    .container-form-quote .columnSliderLeft{
+        padding: 0px;
+    }
+
+    .container-form-quote .icon-free-order{
+        height: 40%;
+        width: 55%;
+    }
+
+    .container-form-quote .icon-free-investment{
+        height: 40%;
+        width: 55%;
+    }
+
+    .container-form-quote .icon-micro-credit{
+        height: 40%;
+        width: 55%;
+    }
+
+    .container-form-quote .btnTabForm{
+        font-size: 10px;
+        padding: 0px!important;
+    }
+
+    .contentFormQuote{
+        padding: 0px!important;
+        margin: 0px!important;
+    }
+
+    .content-table-result{
+        padding: 0px;
+    }
+
+}  
+
+@keyframes animated_form {
+    0%   { top:40px; }
+    100% { top:0px; }
+  }
+
+@keyframes pulse {
+    0% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+

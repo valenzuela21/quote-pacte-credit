@@ -103,13 +103,58 @@ class AdminPacte
                 'disable_spinner' => false,
             ),
         ));
+
+
         $xbox->add_field(array(
             'name' => __( 'Taza de interes', 'wp-pacte-form' ),
             'id' => 'tax-1',
             'type' => 'text',
             'default' => '',
-            'grid' => '2-of-6 last',
+            'grid' => '2-of-6',
         ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Seguro', 'wp-pacte-form' ),
+            'id' => 'seguro-1',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
+        ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Tecnología', 'wp-pacte-form' ),
+            'id' => 'tecnologia-1',
+            'type' => 'number',
+            'default' => '',
+            'grid' => '2-of-6',
+            'desc' => __( 'No ingresar (.) ni (,)', 'wp-pacte-form' ),
+            'options' => array(
+                'unit' => '$',
+                'show_unit' => true,
+                'show_spinner' => true,
+                'disable_spinner' => false,
+            ),
+        ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Administracion', 'wp-pacte-form' ),
+            'id' => 'admin-1',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
+        ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Iva', 'wp-pacte-form' ),
+            'id' => 'iva-1',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
+            'desc' => __( 'No ingresar (.) ni (,)', 'wp-pacte-form' ),
+
+        ));
+
+
         $xbox->close_mixed_field();
          //End Config Service 1
 
@@ -157,14 +202,56 @@ class AdminPacte
                 'disable_spinner' => false,
             ),
         ));
+
         $xbox->add_field(array(
             'name' => __( 'Taza de interes', 'wp-pacte-form' ),
             'id' => 'tax-2',
             'type' => 'text',
             'default' => '',
-            'grid' => '2-of-6 last',
+            'grid' => '2-of-6',
           
         ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Seguro', 'wp-pacte-form' ),
+            'id' => 'seguro-2',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
+        ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Tecnología', 'wp-pacte-form' ),
+            'id' => 'tecnologia-2',
+            'type' => 'number',
+            'default' => '',
+            'grid' => '2-of-6',
+            'desc' => __( 'No ingresar (.) ni (,)', 'wp-pacte-form' ),
+            'options' => array(
+                'unit' => '$',
+                'show_unit' => true,
+                'show_spinner' => true,
+                'disable_spinner' => false,
+            ),
+        ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Administración', 'wp-pacte-form' ),
+            'id' => 'admin-2',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
+        ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Iva', 'wp-pacte-form' ),
+            'id' => 'iva-2',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
+
+        ));
+
         $xbox->close_mixed_field();
          //End Config Service 2
 
@@ -217,13 +304,55 @@ class AdminPacte
             'id' => 'tax-3',
             'type' => 'text',
             'default' => '',
-            'grid' => '2-of-6 last',
-           
+            'grid' => '2-of-6',
+
         ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Seguro', 'wp-pacte-form' ),
+            'id' => 'seguro-3',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
+        ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Tecnología', 'wp-pacte-form' ),
+            'id' => 'tecnologia-3',
+            'type' => 'number',
+            'default' => '',
+            'grid' => '2-of-6',
+            'desc' => __( 'No ingresar (.) ni (,)', 'wp-pacte-form' ),
+            'options' => array(
+                'unit' => '$',
+                'show_unit' => true,
+                'show_spinner' => true,
+                'disable_spinner' => false,
+            ),
+
+        ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Administración', 'wp-pacte-form' ),
+            'id' => 'admin-3',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
+        ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Iva', 'wp-pacte-form' ),
+            'id' => 'iva-3',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
+
+        ));
+
         $xbox->close_mixed_field();
          //End Config Service 3
           //Config Month
-        $xbox->open_mixed_field(array('name' => 'Servicio 3'));
+        $xbox->open_mixed_field(array('name' => 'Meses'));
   
         $xbox->add_field(array(
             'name' => __( 'Mes min', 'wp-pacte-form' ),
@@ -256,6 +385,61 @@ class AdminPacte
         $xbox->close_mixed_field();
          //End Config Month
 
+        $xbox->open_mixed_field(array('name' => 'Descripciones Auto Ayuda'));
+
+        $xbox->add_field(array(
+            'id' => 'desc-interes',
+            'name' => __( 'Descripción Interes', 'wp-pacte-form' ),
+            'type' => 'textarea',
+            'grid' => '3-of-7',
+            'default' => 'Textarea content',
+        ));
+        $xbox->add_field(array(
+            'id' => 'desc-seguro',
+            'name' => __( 'Descripción Seguros', 'wp-pacte-form' ),
+            'type' => 'textarea',
+            'grid' => '3-of-7',
+            'default' => 'Textarea content',
+        ));
+        $xbox->add_field(array(
+            'id' => 'desc-tecnologia',
+            'name' => __( 'Descripción Tecnólogia', 'wp-pacte-form' ),
+            'type' => 'textarea',
+            'grid' => '3-of-7',
+            'default' => 'Textarea content',
+        ));
+        $xbox->add_field(array(
+            'id' => 'desc-admin',
+            'name' => __( 'Descripción Administración', 'wp-pacte-form' ),
+            'type' => 'textarea',
+            'grid' => '3-of-7',
+            'default' => 'Textarea content',
+        ));
+        $xbox->add_field(array(
+            'id' => 'desc-iva',
+            'name' => __( 'Descripción Iva', 'wp-pacte-form' ),
+            'type' => 'textarea',
+            'grid' => '3-of-7',
+            'default' => 'Textarea content',
+        ));
+        $xbox->add_field(array(
+            'id' => 'desc-mes',
+            'name' => __( 'Descripción Mes', 'wp-pacte-form' ),
+            'type' => 'textarea',
+            'grid' => '3-of-7',
+            'default' => 'Textarea content',
+        ));
+        $xbox->add_field(array(
+            'id' => 'desc-mes',
+            'name' => __( 'Fecha de Solicitud', 'wp-pacte-form' ),
+            'type' => 'textarea',
+            'grid' => '3-of-7',
+            'default' => 'Textarea content',
+        ));
+
+
+        $xbox->close_mixed_field();
+        //End Config Month
         $xbox->add_field(array(
             'name' => __( 'Precio por defecto slider', 'wp-pacte-form' ),
             'id' => 'txt-slider',

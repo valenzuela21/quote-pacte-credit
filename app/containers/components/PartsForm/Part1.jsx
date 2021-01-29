@@ -48,12 +48,38 @@ class Part1 extends Component {
       stateLive,
       countChildren,
       countDepends,
-      nivelStudent
+      nivelStudent,
+      question_mount
     } = this.state;
 
     return (
       <FormGroup className="animateForm">
+
         <Container className="p-0">
+          <h5 style={{color : '#070c36' , textAlign: 'center' }} >Vamos a llenar unos datos para conocerte mejor¡</h5>
+          <Col sm="12" md="12" lg="12" className="p-2">
+            <div className="labelContainer text-center">
+              <label htmlFor="#firtsName" className="labelFormQuoteInfo">
+                Primero y muy importante para que vas a utilizar este monto ?
+              </label>
+            </div>
+            <FormSelect
+                className="inputFormQuoteInfo"
+                onChange={this.myChangeHandler}
+                name="question_mount"
+                id="#question_mount"
+                value={question_mount != undefined ? question_mount : ""}
+            >
+              <option value="">Seleccione</option>
+              <option value="1">Inversión</option>
+              <option value="2">Gastos personales familiares</option>
+              <option value="3">Vacaciones</option>
+              <option value="4">Educación</option>
+              <option value="5">Un Negocio</option>
+              <option value="6">Tengo una emergencia</option>
+            </FormSelect>
+          </Col>
+          <h5 className="titleSubform">Datos Personales</h5>
           <Row>
             <Col sm="6" md="6" lg="6" className="p-2">
               <div className="labelContainer">
@@ -239,6 +265,7 @@ class Part1 extends Component {
                 <option value="2">Casado</option>
                 <option value="3">Divorciado</option>
                 <option value="4">Unión Libre</option>
+                <option value="5">Soltero</option>
               </FormSelect>
             </Col>
             <Col sm="6" md="6" lg="6" className="p-2">

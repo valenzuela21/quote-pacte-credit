@@ -142,6 +142,13 @@ pre, fieldset, input, textarea, table, table *, hr{
     color: #090e45;
 }
 
+.btnFormQuote .labelFormsubmit {
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size: 14px;
+    padding: 0px;
+    margin: 0px;
+    color: #fff;
+}
 
 .file-display-container .close-file{
     background-image: url('../img/close.svg');
@@ -224,6 +231,11 @@ pre, fieldset, input, textarea, table, table *, hr{
     color:#db5d22!important;
     text-decoration: none!important;
     border:1px solid #db5d22!important;
+}
+
+.container-form-quote .parrafo-auth{
+    font-family: Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-size: 12px;
 }
 
 .container-form-quote .btnTabForm.active  .icon-free-order{
@@ -387,8 +399,20 @@ pre, fieldset, input, textarea, table, table *, hr{
     margin-top: 18px;
 }
 
-.contentInfoservice2{
-    margin-top: 18px;
+.content_select{
+    margin-top: 20px;
+    padding: 0px;
+}
+
+.contentFormQuote .btn-tooltip{
+    margin: 0px !important;
+    padding: 0px !important;
+    min-width: 22px !important;
+    background: #5f5f5fa3 !important;
+    border-radius: 50% !important;
+    color: #fff !important;
+    font-size: 12px !important;
+    min-height: 22px !important;
 }
 
 .contentInfoservice .titelInvertion{
@@ -457,6 +481,13 @@ pre, fieldset, input, textarea, table, table *, hr{
     margin: 0px;
     color: #ffffff;
     padding-left: 10px;
+}
+.titleSubform{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-bottom: 0.01px solid #070c36;
+    color: #070c36;
+    font-weight: 300;
 }
 
 @media only screen and (max-width: 990px) {

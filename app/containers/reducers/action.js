@@ -5,7 +5,8 @@ const INITIAL_STATE = {
 export function actionApp( state= INITIAL_STATE, action){
     switch(action.type){
         case 'CALCULATE':
-                const {title_service, value_min, value_max, value_pressing, txtFormat, value_moth, option, tax, view, result } = action.param;
+                const {title_service, value_min, value_max, value_pressing, txtFormat, value_moth, option, tax, sure, iva, technology, view, result, cal_interest,
+                    cal_iva, cal_mount_route, cal_technology, cal_sure } = action.param;
 
                 let d = new Date();
                     d.setTime(Date.now());
@@ -18,7 +19,15 @@ export function actionApp( state= INITIAL_STATE, action){
                         date  : d,
                         value_pressing : txtFormat,
                         tax: tax,
+                        sure: sure,
+                        iva: iva,
+                        technology: technology,
                         view: view,
+                        cal_interest,
+                        cal_iva,
+                        cal_mount_route,
+                        cal_technology,
+                        cal_sure,
                         result: result,
                         
                     }

@@ -1,570 +1,510 @@
-import React, { Component } from "react";
-import { Form, Container, Row, Col } from "shards-react";
+import React, {Component} from "react";
+import {Form, Container, Row, Col} from "shards-react";
 
-import Moment from "react-moment";
 import swal from "sweetalert";
-
-import logoGeneral from "../../../assets/img/logo.png";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css";
 
 import axios from "axios";
-import { urlSend } from "../../configUrl";
+import {urlSend} from "../../configUrl";
 
 //Part Form Quote Info
 import Part1 from "../components/PartsForm/Part1";
 import Part2 from "./PartsForm/Part2";
+import Part3 from "./PartsForm/Part3";
+
+import TableQuote2 from './tableQuote2';
+
 
 export class InfoPacteform extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      formPart: 1,
-      formdata: {},
-      formdata2: {},
-    };
-  }
-
-  formatPressing = (number) =>
-    this.formatCurrency("es-CO", "COP", null, number);
-
-  formatCurrency(local, currency, fractionDigits, number) {
-    let formatted = new Intl.NumberFormat(local, {
-      style: "currency",
-      currency: currency,
-      minimumFractionDigits: fractionDigits,
-    }).format(number);
-
-    return formatted;
-  }
-
-  clickPrevform = (e) => {
-    this.setState({
-      formPart: 1,
-    });
-  };
-
-  dataForm = (param) => {
-    this.setState({
-      formdata: param,
-    });
-  };
-
-  dataForm2 = (param) => {
-    this.setState({
-      formdata2: param,
-    });
-  };
-
-  clickNextform = (e) => {
-    const {
-      firtsName,
-      secondName,
-      lastName,
-      lastName2,
-      birthDate,
-      typeDocument,
-      numberDocument,
-      expedDocument,
-      expedDate,
-      typeGenero,
-      stateCivil,
-      stateLive,
-      countChildren,
-      countDepends,
-      nivelStudent,
-    } = this.state.formdata;
-
-    if (firtsName === "" || firtsName === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el primero nombre.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (secondName === "" || secondName === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el segundo nombre.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (lastName === "" || lastName === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el primer apellido.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (lastName2 === "" || lastName2 === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el segundo apellido.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (birthDate === "" || birthDate === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa la fecha nacimiento.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (typeDocument === "" || typeDocument === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el tipo de documento.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (numberDocument === "" || numberDocument === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el numero de idenficación.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (expedDocument === "" || expedDocument === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el campo expedio en.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (expedDate === "" || expedDate === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa la fecha de expedición.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (typeGenero === "" || typeGenero === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el tipo género.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (stateCivil === "" || stateCivil === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el estado civil.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (stateLive === "" || stateLive === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa con quien vives.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (countChildren === "" || countChildren === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa cuantos hijos tienes.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (countDepends === "" || countDepends === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa cuantos dependen de ti.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (nivelStudent === "" || nivelStudent === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa nivel de estudio.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else {
-      this.setState({
-        formPart: 0,
-      });
+    constructor(props) {
+        super(props);
+        this.state = {
+            formPart: 1,
+            formdata: {},
+            formdata2: {},
+            formdata3: {},
+        };
     }
-  };
 
-  validateEmail(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
+    formatPressing = (number) =>
+        this.formatCurrency("es-CO", "COP", null, number);
 
-  submitForm = (e) => {
-    e.preventDefault();
-    const {
-      firtsName,
-      secondName,
-      lastName,
-      lastName2,
-      birthDate,
-      typeDocument,
-      numberDocument,
-      expedDocument,
-      expedDate,
-      typeGenero,
-      stateCivil,
-      stateLive,
-      countChildren,
-      countDepends,
-      nivelStudent,
-    } = this.state.formdata;
+    formatCurrency(local, currency, fractionDigits, number) {
+        let formatted = new Intl.NumberFormat(local, {
+            style: "currency",
+            currency: currency,
+            minimumFractionDigits: fractionDigits,
+        }).format(number);
 
-    const {
-      addressResidence,
-      city,
-      email,
-      movil,
-      planMovil,
-      stratum,
-      telephone,
-      typeHouse,
-      typeTransport,
-      communication,
-      url1,
-      url2,
-      url3,
-      url4,
-    } = this.state.formdata2;
+        return formatted;
+    }
 
-    if (city === "" || city === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa la ciudad.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (addressResidence === "" || addressResidence === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa la dirección de residencia.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (typeHouse === "" || typeHouse === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el tipo de casa.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (stratum === "" || stratum === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el estrato de tu vivienda.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (telephone === "" || telephone === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el telefóno fijo.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (movil === "" || movil === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el número movil.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (planMovil === "" || planMovil === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el plan movil.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (email === "" || email === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el correo electrónico.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (!this.validateEmail(email)) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el correo correctamente.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (typeTransport === "" || typeTransport === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el tipo de transporte.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (communication === "" || communication === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa como te enteraste de nosotros.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (url1 === "" || url1 === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa los extractos bancarios.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (url2 === "" || url2 === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el comprobante nómina.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (url3 === "" || url3 === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa el certificado laboral.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else if (url4 === "" || url4 === undefined) {
-      swal({
-        title: "Error!",
-        text: "Ingresa la declaración de renta.",
-        icon: "error",
-        button: "Ok!",
-      });
-    } else {
-      let tax = this.props.data.tax;
-      let month = this.props.data.month;
-      let service = this.props.data.service;
-      let pressing = this.props.data.value_pressing;
-      let result = this.formatPressing(this.props.data.result);
-
-      const params = {
-        firtsName,
-        secondName,
-        lastName,
-        lastName2,
-        birthDate,
-        typeDocument,
-        numberDocument,
-        expedDocument,
-        expedDate,
-        typeGenero,
-        stateCivil,
-        stateLive,
-        countChildren,
-        countDepends,
-        nivelStudent,
-        addressResidence,
-        city,
-        email,
-        movil,
-        planMovil,
-        stratum,
-        telephone,
-        typeHouse,
-        typeTransport,
-        communication,
-        url1,
-        url2,
-        url3,
-        url4,
-        service,
-        pressing,
-        tax,
-        result,
-        month,
-      };
-
-      axios
-        .post(urlSend, params)
-        .then((responde) => {
-          swal({
-            title: "Se ha enviado!",
-            text:
-              "Estudiaremos tu caso de crédito, en pocos momentos te daremos la aprobación.",
-            icon: "success",
-            button: "Ok!",
-          }).then((value) => {
-            if (value) {
-              window.location.assign("https://pacte.com.co/");
-            }
-          });
-        })
-        .catch((error) => {
-          console.log(`No se pudo enviar info: ${error}`);
+    clickPrevform = (param) => {
+        this.setState({
+            formPart: param,
         });
-    }
-  };
+    };
 
-  render() {
-    return (
-      <div>
-        {(() => {
-          if (this.props.data.view === true) {
-            return (
-              <Container className="contentFormQuote">
-                <Row>
-                  <Col sm="12" md="7" lg="7" className="p-0">
-                    <Container>
-                      <Form className="formQuote">
-                        {(() => {
-                          if (this.state.formPart === 1) {
-                            return (
-                              <Part1
-                                clickNext={this.clickNextform}
-                                dataForm={this.dataForm}
-                                outputForm={this.state.formdata}
-                              />
-                            );
-                          } else {
-                            return (
-                              <Part2
-                                clickPrev={this.clickPrevform}
-                                dataForm={this.dataForm2}
-                                submitForm={this.submitForm}
-                                outputForm={this.state.formdata2}
-                              />
-                            );
-                          }
-                        })()}
-                      </Form>
-                    </Container>
-                  </Col>
-                  <Col
-                    sm="12"
-                    md="5"
-                    lg="5"
-                    className="p-2"
-                    className="content-table-result"
-                  >
-                    <Container className="p-3">
-                      <Row>
-                        <Col xs="4" sm="3" md="5" lg="3" className="p-0">
-                          <img src={logoGeneral} alt="image-logo" />
-                        </Col>
-                        <Col xs="8" sm="9" md="7" lg="9" className="p-0">
-                          <div className="contentInfoservice p-0">
-                            <h2 className="titelInvertion">
-                              {this.props.data.service}
-                            </h2>
-                            <p className="txtsubInvertion">
-                              Este es el resultado de tu crédito.
-                            </p>
-                          </div>
-                        </Col>
-                      </Row>
-                    </Container>
-                    <table className="p-0 m-0">
-                      <tbody>
-                        <tr>
-                          <td className="p-0">
-                            <div className="startTablePressing">
-                              <table className="p-0 m-0">
-                                <tbody>
-                                  <tr>
-                                    <td className="columnTableLeft">
-                                      <p className="txt-right">
-                                        Valor Solicitado
-                                      </p>
-                                    </td>
-                                    <td>
-                                      <strong
-                                        style={{
-                                          color: "#fa5d15",
-                                          fontWeight: 600,
-                                        }}
-                                      >
-                                        {this.props.data.value_pressing
-                                          ? this.props.data.value_pressing
-                                          : ""}
-                                      </strong>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td className="columnTableLeft">
-                                      <p className="txt-right">Interés</p>
-                                    </td>
-                                    <td>
-                                      {this.props.data.tax != null
-                                        ? `${this.props.data.tax} %`
-                                        : ""}
-                                      EA
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="p-0">
-                            <div className="endTablePressing">
-                              <table className="p-0 m-0">
-                                <tbody>
-                                  <tr>
-                                    <td className="columnTableLeft">
-                                      <p className="txt-right">
-                                        Fecha Solicitud
-                                      </p>
-                                    </td>
-                                    <td>
-                                      <strong>
-                                        <Moment format="D MMM YYYY" withTitle>
-                                          {this.props.data.date}
-                                        </Moment>
-                                      </strong>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td className="columnTableLeft">
-                                      <p className="txt-right">
-                                        Tiempo / Plazo
-                                      </p>
-                                    </td>
-                                    <td>
-                                      {this.props.data.month != null
-                                        ? `${this.props.data.month} meses`
-                                        : ""}
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="p-0">
-                            <div className="startTablePressing">
-                              <table className="p-0 m-0">
-                                <tbody>
-                                  <tr>
-                                    <td className="columnTableLeft">
-                                      <p className="txt-right">Cuota por mes</p>
-                                    </td>
-                                    <td className="font-size-20">
-                                      {this.formatPressing(
-                                        this.props.data.result
-                                      )}
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </Col>
-                </Row>
-              </Container>
-            );
-          }
-        })()}
-      </div>
-    );
-  }
+    dataForm = (param) => {
+        this.setState({
+            formdata: param,
+        });
+    };
+
+    dataForm2 = (param) => {
+        this.setState({
+            formdata2: param,
+        });
+    };
+
+    dataForm3 = (param) => {
+        this.setState({
+            formdata3: param,
+        });
+    };
+
+    validateEmail(email) {
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    clickNextform = (param) => {
+
+        switch (param) {
+            case 1:
+                const {
+                    firtsName,
+                    secondName,
+                    lastName,
+                    lastName2,
+                    birthDate,
+                    typeDocument,
+                    numberDocument,
+                    expedDocument,
+                    expedDate,
+                    typeGenero,
+                    stateCivil,
+                    stateLive,
+                    countChildren,
+                    countDepends,
+                    nivelStudent,
+                    question_mount
+                } = this.state.formdata;
+
+                if(question_mount === "" || question_mount === undefined ){
+                    swal({
+                        title: "Error!",
+                        text: "Seleccione el por que vas a utilizar el monto.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (firtsName === "" || firtsName === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el primero nombre.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (secondName === "" || secondName === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el segundo nombre.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (lastName === "" || lastName === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el primer apellido.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (lastName2 === "" || lastName2 === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el segundo apellido.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (birthDate === "" || birthDate === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa la fecha nacimiento.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (typeDocument === "" || typeDocument === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el tipo de documento.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (numberDocument === "" || numberDocument === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el numero de idenficación.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (expedDocument === "" || expedDocument === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el campo expedio en.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (expedDate === "" || expedDate === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa la fecha de expedición.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (typeGenero === "" || typeGenero === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el tipo género.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (stateCivil === "" || stateCivil === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el estado civil.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (stateLive === "" || stateLive === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa con quien vives.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (countChildren === "" || countChildren === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa cuantos hijos tienes.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (countDepends === "" || countDepends === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa cuantos dependen de ti.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (nivelStudent === "" || nivelStudent === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa nivel de estudio.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else {
+                    this.setState({
+                        formPart: 2,
+                    });
+                }
+                break;
+            case 2:
+                const {
+                    city,
+                    addressResidence,
+                    typeHouse,
+                    stratum,
+                    telephone,
+                    movil,
+                    planMovil,
+                    email,
+                    typeTransport,
+                    communication,
+                    doing,
+                    long_working,
+                    company_is,
+                    name_business,
+                    area_business,
+                    income_month,
+                    contract,
+                    bank
+                } = this.state.formdata2;
+
+
+                if (city === "" || city === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa la ciudad.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (addressResidence === "" || addressResidence === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa la dirección de residencia.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (typeHouse === "" || typeHouse === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el tipo de casa.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (stratum === "" || stratum === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el estrato de tu vivienda.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (telephone === "" || telephone === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el telefóno fijo.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (movil === "" || movil === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el número movil.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (planMovil === "" || planMovil === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el plan movil.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (email === "" || email === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el correo electrónico.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (!this.validateEmail(email)) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el correo correctamente.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (typeTransport === "" || typeTransport === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el tipo de transporte.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (communication === "" || communication === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa como te enteraste de nosotros.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (doing === "" || doing === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa que haces",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (long_working === "" || long_working === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Cuantos años de experiencia llevas.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (company_is === "" || company_is === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Seleccione el tipo de empresa.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (name_business === "" || name_business === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el nombre de la empresa.",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (area_business === "" || area_business === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el area en que trabajas",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (income_month === "" || income_month === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa los ingresos mensuales",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (contract === "" || contract === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa el tipo de contrato que tienes",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else if (bank === "" || bank === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Ingresa en donde tienes la cuenta",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+                } else {
+                    this.setState({
+                        formPart: 3,
+                    });
+                }
+
+
+                break;
+            default:
+                const data1 = this.state.formdata;
+                const data2 = this.state.formdata2;
+                const data3 = this.state.formdata3;
+
+                //Props Redux Store
+                let tax = this.props.data.tax;
+                let month = this.props.data.month;
+                let service = this.props.data.service;
+                let pressing = this.props.data.value_pressing;
+                let result = this.formatPressing(this.props.data.result);
+
+                const params = {
+                    ...data1,
+                    ...data2,
+                    ...data3,
+                    service,
+                    pressing,
+                    tax,
+                    result,
+                    month,
+                };
+
+                if (data3.check === false || data3.check === undefined) {
+                    swal({
+                        title: "Error!",
+                        text: "Acepte los términos y condiciones de tu crédito",
+                        icon: "error",
+                        button: "Ok!",
+                    });
+
+                    return;
+                }
+
+
+            axios
+                .post(urlSend, params)
+                .then(() => {
+                    swal({
+                        title: "Se ha enviado correctamente!",
+                        text:
+                            "Estudiaremos tu caso de crédito, en pocos momentos te daremos la aprobación.",
+                        icon: "success",
+                        button: "Ok!",
+                    }).then((value) => {
+                        if (value) {
+                            window.location.assign("https://pacte.com.co/");
+                        }
+                    });
+                })
+                .catch((error) => {
+                    console.log(`No se pudo enviar info: ${error}`);
+                });
+
+        }
+
+    };
+
+    render() {
+        return (
+            <div>
+                {(() => {
+                    if (this.props.data.view === true) {
+                        return (
+                            <Container className="contentFormQuote">
+                                <Row>
+                                    <Col sm="12" md="7" lg="7" className="p-0">
+                                        <Container>
+                                            <Form className="formQuote">
+                                                {(() => {
+                                                    if (this.state.formPart === 1) {
+                                                        return (
+                                                            <Part1
+                                                                clickNext={e => this.clickNextform(1)}
+                                                                dataForm={this.dataForm}
+                                                                outputForm={this.state.formdata}
+                                                            />
+                                                        );
+                                                    } else if (this.state.formPart === 2) {
+                                                        return (
+                                                            <Part2
+                                                                clickNext={e => this.clickNextform(2)}
+                                                                clickPrev={e => this.clickPrevform(1)}
+                                                                dataForm={this.dataForm2}
+                                                                outputForm={this.state.formdata2}
+                                                            />
+                                                        );
+                                                    } else {
+                                                        return (<Part3
+                                                            clickPrev={e => this.clickPrevform(2)}
+                                                            submitForm={e => this.clickNextform(3)}
+                                                            dataForm={this.dataForm3}
+                                                            outputForm={this.state.formdata3}
+                                                        />);
+                                                    }
+                                                })()}
+                                            </Form>
+                                        </Container>
+                                    </Col>
+                                    <Col
+                                        sm="12"
+                                        md="5"
+                                        lg="5"
+                                        className="p-2 content-table-result"
+                                    >
+
+                                        <TableQuote2
+                                            result={this.formatPressing(this.props.data.result)}
+                                            month={this.props.data.month}
+                                            date={this.props.data.date}
+                                            tax={this.props.data.tax}
+                                            sure={this.props.data.sure}
+                                            iva={this.formatPressing(this.props.data.iva)}
+                                            technology={this.formatPressing(this.props.data.technology)}
+                                            calinterest={this.formatPressing(this.props.data.cal_interest)}
+                                            calmountroute={this.formatPressing(this.props.data.cal_mount_route)}
+                                            caltechnology={this.formatPressing(this.props.data.technology)}
+                                            calsure={this.formatPressing(this.props.data.cal_sure)}
+                                            caliva={this.formatPressing(this.props.data.cal_iva)}
+                                            pressing={this.props.data.value_pressing}
+                                            service={this.props.data.service}
+                                        />
+
+                                    </Col>
+                                </Row>
+                            </Container>
+                        );
+                    }
+                })()}
+            </div>
+        );
+    }
 }

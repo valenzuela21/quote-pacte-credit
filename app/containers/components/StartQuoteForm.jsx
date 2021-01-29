@@ -17,6 +17,7 @@ import "shards-ui/dist/css/shards.min.css";
 import swal from 'sweetalert';
 import TableQuote  from "./tableQuote";
 
+
 export class StartQuoteForm extends React.Component {
 
   formatPressing = (number) =>
@@ -41,12 +42,17 @@ export class StartQuoteForm extends React.Component {
       option: null,
       tax: null,
       view: false,
+      cal_interest: '',
+      cal_mount_route: '',
+      cal_technology: '',
+      cal_iva: '',
+      cal_sure: '',
     };
   }
 
   //Start Component
   componentDidMount() {
-    this.tabOptions([1, service1.title, service1.tax, defaultPresing, service1.max, service1.min, service1.desc ]);
+    this.tabOptions([1, service1.title, service1.tax, defaultPresing, service1.max, service1.min, service1.desc, service1.sure, service1.technology, service1.iva,  service1.admin  ]);
     this.setState({
       value_pressing: defaultPresing,
     });
@@ -54,10 +60,11 @@ export class StartQuoteForm extends React.Component {
 
 
   //Slider Input Pressing
-
   handleSlide(e) {
-    const {value_moth, tax} = this.state
+    const {value_moth, tax} = this.state;
     let pressing = this.formatPressing(parseInt(e[0]));
+
+    this.calculateOptions();
     let result = this.calculateResult(value_moth, tax, parseInt(e[0]))
     this.setState({
       value_pressing: parseInt(e[0]),
@@ -72,8 +79,9 @@ export class StartQuoteForm extends React.Component {
     const {value_pressing, tax} = this.state;
 
     let dataInput;
-    (e[0] === null || e[0] === '')? dataInput = 1 : dataInput = e[0];
-      
+    (e[0] === null || e[0] === '')? dataInput = 1 : dataInput = parseInt(e[0]);
+
+    this.calculateOptions();
     let result = this.calculateResult(dataInput, tax, value_pressing);
     this.setState({
         value_moth: parseInt(dataInput),
@@ -111,6 +119,7 @@ export class StartQuoteForm extends React.Component {
           event.target.value
       );
 
+      this.calculateOptions();
       let result = this.calculateResult(value_moth, tax, event.target.value)
 
       this.setState({
@@ -118,6 +127,7 @@ export class StartQuoteForm extends React.Component {
         value_pressing: event.target.value,
         txtFormat: pressing
       });
+
     }
   };
 
@@ -126,35 +136,44 @@ export class StartQuoteForm extends React.Component {
   handleNumberSlide = (event) => {
     event.preventDefault();
 
-    const {value_pressing, tax} = this.state
+    const {value_pressing, tax} = this.state;
 
-    if(event.target.value > this.state.value_moth_max || event.target.value.length > 2){
+    this.calculateOptions();
+    let result = this.calculateResult(event.target.value, tax, value_pressing);
+
+    if(Number(event.target.value) > Number(this.state.value_moth_max) || event.target.value.length > 2){
       swal({
         title: "¡Alerta!",
         text: `Te excediste el plazo por mes.  \n Valor mes máximo aceptado: ${this.state.value_moth_max}`,
         icon: "warning",
         button: "Ok!",
       });
-      return;
+
+    }else if(Number(event.target.value) < 0){
+      swal({
+        title: "¡Alerta!",
+        text: `No se acepta números negativos.`,
+        icon: "warning",
+        button: "Ok!",
+      });
+
+      this.setState({
+        results: result,
+        value_moth: 1
+      });
+
+    }else{
+
+      this.setState({
+        results: result,
+        value_moth: event.target.value
+      });
     }
-
-
-    let dataInput;
-    (event.target.value === null || event.target.value === '')? dataInput = 1 :dataInput = event.target.value;
-
-    let result = this.calculateResult(event.target.value, tax, value_pressing)
-
-    this.setState({
-      results: result,
-      value_moth: dataInput
-    });
 
   };
 
-
-
   tabOptions = (option) => {
-  
+
     this.setState({
       results: '',
       value_pressing: defaultPresing,
@@ -166,15 +185,84 @@ export class StartQuoteForm extends React.Component {
       tax: option[2],
       value_min: option[3],
       value_max: option[4],
-      txt_min: option[5]  
+      txt_min: option[5],
+      sure: option[7],
+      technology: option[8],
+      iva:  option[9],
+      admin: option[10],
     });
-    
 
+    this.calculateOptions();
     let result = this.calculateResult(1, option[2], option[3]);
       this.setState({
         results: result
       })
+
   };
+
+  //Calculate  number month part 1
+  getDaysInMonth = (month, year) =>{
+    return new Date(year, month, 0).getDate();
+  }
+
+  calculateOptions = () =>{
+    //Calcule Result General
+    setTimeout(()=>{
+
+      const {value_pressing, tax , value_moth, technology, sure } = this.state;
+
+      //Month: 1200 or Day 36000
+      let interest = ((value_pressing * tax) * value_moth) / 1200;
+      interest = Math.round(interest);
+
+      let admin_interest =  Number(this.state.admin);
+
+      let mount_route = (value_pressing * admin_interest) / 100;
+
+      let d =  new Date();
+      let month =  d.getMonth();
+      let year = d.getFullYear();
+
+      let arrayDays = [];
+
+      //Calculate number month part 2
+      for(let i=0; i < value_moth; i++){
+        let dayMonthCount = this.getDaysInMonth(month, year);
+        arrayDays.push(dayMonthCount);
+        month++;
+      }
+
+      //Calculate Sum month
+      let sumaDay = 0;
+      arrayDays.forEach((number)=>{
+        sumaDay += number
+      })
+
+
+      let cal_technology = (value_moth * technology)/sumaDay;
+          cal_technology = Math.round(cal_technology);
+
+      let admin_iva =  Number(this.state.iva);
+      let iva = ((cal_technology * admin_iva) * sumaDay)/100;
+          iva = Math.round(iva);
+
+      //Calculate Sure
+      let admin_sure = value_pressing * sure;
+
+
+      // Send setState
+      this.setState({
+        cal_interest: interest,
+        cal_mount_route: mount_route,
+        cal_technology: cal_technology,
+        cal_iva: iva,
+        cal_sure: admin_sure
+      })
+
+    }, 400)
+
+  }
+
 
   calculateResult(month, tax, pressing){
     let n = month;
@@ -204,7 +292,7 @@ export class StartQuoteForm extends React.Component {
 
     const { results } = this.state;
 
-    if(results === 0 || results === undefined || results === "") {
+    if(results === 0 || results === undefined || results === "" || results === Infinity) {
       swal({
         title: "¡Alerta!",
         text: `El valor de resultado de crédito no puede dar 0`,
@@ -221,7 +309,7 @@ export class StartQuoteForm extends React.Component {
     });
 
     setTimeout(()=>{
-      const {title_service, value_min, value_max, value_pressing, txtFormat, value_moth, option, tax, view, results } = this.state;
+      const {title_service, value_min, value_max, value_pressing, txtFormat, value_moth, option, tax, sure, iva, technology, view, results, cal_interest, cal_iva, cal_mount_route, cal_technology, cal_sure } = this.state;
       const addData = {
         title_service,
         value_min,
@@ -231,7 +319,15 @@ export class StartQuoteForm extends React.Component {
         value_moth,
         option,
         tax,
+        sure,
+        iva,
+        technology,
         view,
+        cal_interest,
+        cal_iva,
+        cal_mount_route,
+        cal_technology,
+        cal_sure,
         result: results,
       }
 
@@ -241,7 +337,7 @@ export class StartQuoteForm extends React.Component {
     }, 200)
 
   }
-  
+
 
   render() {
     const service = {
@@ -262,7 +358,7 @@ export class StartQuoteForm extends React.Component {
                          <Row>
                            <Col xs="4" sm="4" md="4" lg="4" className="p-1">
                              <Button
-                                 onClick={(e) => this.tabOptions([1, service1.title, service1.tax, defaultPresing, service1.max, service1.min, service1.desc], e)}
+                                 onClick={(e) => this.tabOptions([1, service1.title, service1.tax, defaultPresing, service1.max, service1.min, service1.desc, service1.sure, service1.technology, service1.iva, service1.admin ], e)}
                                  className={`btnTabForm ${service.option1}`}
                                  block
                              >
@@ -272,7 +368,7 @@ export class StartQuoteForm extends React.Component {
                            </Col>
                            <Col xs="4" sm="4" md="4" lg="4" className="p-1">
                              <Button
-                                 onClick={(e) => this.tabOptions([2, service2.title, service2.tax, defaultPresing, service2.max, service2.min, service2.desc], e)}
+                                 onClick={(e) => this.tabOptions([2, service2.title, service2.tax, defaultPresing, service2.max, service2.min, service2.desc, service2.sure, service2.technology, service2.iva, service1.admin ], e)}
                                  className={`btnTabForm ${service.option2}`}
                                  block
                              >
@@ -282,7 +378,7 @@ export class StartQuoteForm extends React.Component {
                            </Col>
                            <Col xs="4" sm="4" md="4" lg="4" className="p-1">
                              <Button
-                                 onClick={(e) =>  this.tabOptions([3, service3.title, service3.tax, defaultPresing, service3.max, service3.min, service3.desc], e)}
+                                 onClick={(e) =>  this.tabOptions([3, service3.title, service3.tax, defaultPresing, service3.max, service3.min, service3.desc, service3.sure, service3.technology, service3.iva, service3.admin ], e)}
                                  className={`btnTabForm ${service.option3}`}
                                  block
                              >
@@ -424,6 +520,14 @@ export class StartQuoteForm extends React.Component {
                         description={this.state.desc_service}
                         pressing={this.state.value_pressing}
                         tax={this.state.tax}
+                        sure={this.state.sure}
+                        iva={this.formatPressing(this.state.iva)}
+                        technology={this.formatPressing(this.state.technology)}
+                        calinterest={this.state.cal_interest}
+                        calmountroute={this.state.cal_mount_route}
+                        caltechnology={this.state.technology}
+                        caliva={this.state.cal_iva}
+                        calsure={this.state.cal_sure}
                         date={()=>{
                           let d = new Date();
                               d.getTime();

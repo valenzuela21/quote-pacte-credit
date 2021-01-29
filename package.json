@@ -26,6 +26,7 @@
   "homepage": "https://github.com/gopangolin/wp-reactivate#readme",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
+    "@material-ui/core": "^4.11.3",
     "bootstrap": "^4.5.3",
     "isomorphic-fetch": "^3.0.0",
     "jquery": "^3.5.1",

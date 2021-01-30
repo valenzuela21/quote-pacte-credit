@@ -268,8 +268,8 @@ export class StartQuoteForm extends React.Component {
     let n = month;
     let i = tax/100;
 
-    let factor = Math.pow(i+1, n);
-    let result = pressing*i*factor/(factor-1);
+    let factor = Math.pow(i + 1, n);
+    let result = ((pressing * i) * factor)/(factor-1);
 
     this.props.calculate(result);
 

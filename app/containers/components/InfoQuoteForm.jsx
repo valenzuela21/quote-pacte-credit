@@ -386,6 +386,11 @@ export class InfoPacteform extends Component {
                 let service = this.props.data.service;
                 let pressing = this.props.data.value_pressing;
                 let result = this.formatPressing(this.props.data.result);
+                let calinterest =  this.formatPressing(this.props.data.calinterest);
+                let technology =  this.formatPressing(this.props.data.technology);
+                let caliva = this.formatPressing(this.props.data.caliva);
+                let calmountroute = this.formatPressing(this.props.data.calmountroute);
+                let calsure = this.formatPressing(this.props.data.calsure);
 
                 const params = {
                     ...data1,
@@ -396,9 +401,14 @@ export class InfoPacteform extends Component {
                     tax,
                     result,
                     month,
+                    calinterest,
+                    technology,
+                    caliva,
+                    calmountroute,
+                    calsure
                 };
 
-                if (data3.check === false || data3.check === undefined) {
+                if (data3.isChecked === false || data3.isChecked === undefined) {
                     swal({
                         title: "Error!",
                         text: "Acepte los términos y condiciones de tu crédito",
@@ -489,11 +499,11 @@ export class InfoPacteform extends Component {
                                             sure={this.props.data.sure}
                                             iva={this.formatPressing(this.props.data.iva)}
                                             technology={this.formatPressing(this.props.data.technology)}
-                                            calinterest={this.formatPressing(this.props.data.cal_interest)}
-                                            calmountroute={this.formatPressing(this.props.data.cal_mount_route)}
+                                            calinterest={this.formatPressing(this.props.data.calinterest)}
+                                            calmountroute={this.formatPressing(this.props.data.calmountroute)}
                                             caltechnology={this.formatPressing(this.props.data.technology)}
-                                            calsure={this.formatPressing(this.props.data.cal_sure)}
-                                            caliva={this.formatPressing(this.props.data.cal_iva)}
+                                            calsure={this.formatPressing(this.props.data.calsure)}
+                                            caliva={this.formatPressing(this.props.data.caliva)}
                                             pressing={this.props.data.value_pressing}
                                             service={this.props.data.service}
                                         />

@@ -136,12 +136,13 @@ class ShortcodePacte
         $desc_month = $xbox->get_field_value('desc-mes');
         $desc_date_solicitud = $xbox->get_field_value('desc-date-solicitud');
         $desc_date_admin = $xbox->get_field_value('desc-admin');
-
+        $linkterm = $xbox->get_field_value('link-term');
 		// Localize the script with new data
 		$translation_array = array(
 			'email' => $email,
 			'subject' => $subject,
 			'sliderprecing' => $txt_slider,
+			'linkterm' => $linkterm,
 			'service1' => [
 				'title'=> $service_title1,
 				'desc'=> $desc_1,

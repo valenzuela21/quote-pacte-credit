@@ -308,7 +308,7 @@ class Part1 extends Component {
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5 o más</option>
-                <option value="6">Ninguna de las anteriores</option>
+                <option value="6">No tengo hijos</option>
               </FormSelect>
             </Col>
             <Col sm="6" md="6" lg="6" className="p-2">

@@ -7,6 +7,7 @@ let  month = object_name.month;
 
 let  defaultPresing = object_name.sliderprecing;
 let description = object_name.description;
+let linkterm = object_name.linkterm;
 
 let arrayService1 = [];
 
@@ -41,4 +42,4 @@ for(let value4 in description){
 
 description = Object.assign({}, ...arrayDescription);
 
-export {service1, service2, service3, month, defaultPresing, description}
+export {service1, service2, service3, month, defaultPresing, description, linkterm}

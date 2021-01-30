@@ -148,7 +148,7 @@ export default class TableQuote extends Component {
                                     </tr>
                                     <tr>
                                         <td className="columnTableLeft" >
-                                            <p className="txt-right">Administración</p>
+                                            <p className="txt-right">Servicio Cupo Rotativo</p>
                                         </td>
                                         <td>
                                             <div className="row">

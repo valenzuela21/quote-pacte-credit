@@ -460,6 +460,14 @@ class AdminPacte
                 'precision' => 0,
             )
         ));
+        $xbox->add_field(array(
+            'name' => __( 'Link Terminos y condiciones', 'wp-pacte-form' ),
+            'id' => 'link-term',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '6-of-6',
+
+        ));
       
     }
 

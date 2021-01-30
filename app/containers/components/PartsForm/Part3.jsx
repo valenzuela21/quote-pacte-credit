@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Col, Container, ListGroup, ListGroupItem, Row, FormGroup, Button, FormCheckbox} from "shards-react";
+import {linkterm} from "../../../paramConfig";
 import Dropzone from "../Dropzone";
 
 class Part3 extends Component {
@@ -7,7 +8,7 @@ class Part3 extends Component {
         super(props);
         this.state = {
             tabUpload: 1,
-            check: false,
+            isChecked: false,
             url1: "",
             url2: "",
             url3: "",
@@ -65,6 +66,17 @@ class Part3 extends Component {
         }, 200);
 
     };
+
+    toggleChange = () => {
+        this.setState({
+            isChecked: !this.state.isChecked,
+        });
+
+        setTimeout(() => {
+            this.props.dataForm(this.state);
+        }, 200);
+
+    }
 
 
 
@@ -184,12 +196,12 @@ class Part3 extends Component {
                 <Row>
                     <Col>
                         <FormCheckbox
-                            checked={this.state.check}
+                            checked={this.state.isChecked}
                             name="check"
-                            value={true}
-                            onChange={e => this.myChangeHandler(e)}
-                        > <span className="parrafo-auth">Acepto todos los terminos y condiciones de este contrato y el tratamiento de  mis datos persoanles.
-                            <a target="_blank" href=""> Aqui</a></span>
+                            onChange={this.toggleChange}
+                        >
+                            <span className="parrafo-auth">Acepto todos los terminos y condiciones de este contrato y el tratamiento de  mis datos persoanles.
+                            <a target="_blank" href={linkterm} > Aqui </a> </span>
                         </FormCheckbox>
                     </Col>
                 </Row>

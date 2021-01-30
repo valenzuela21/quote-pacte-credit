@@ -120,7 +120,7 @@ const TableQuote2 = (props) => {
                             </tr>
                             <tr>
                                 <td className="columnTableLeft">
-                                    <p className="txt-right">Administración</p>
+                                    <p className="txt-right">Servicio Cupo Rotativo</p>
                                 </td>
                                 <td>
                                     <div className="row">

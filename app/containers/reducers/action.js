@@ -23,11 +23,11 @@ export function actionApp( state= INITIAL_STATE, action){
                         iva: iva,
                         technology: technology,
                         view: view,
-                        cal_interest,
-                        cal_iva,
-                        cal_mount_route,
-                        cal_technology,
-                        cal_sure,
+                        calinterest: cal_interest,
+                        caliva: cal_iva,
+                        calmountroute: cal_mount_route,
+                        caltechnology: cal_technology,
+                        calsure: cal_sure,
                         result: result,
                         
                     }

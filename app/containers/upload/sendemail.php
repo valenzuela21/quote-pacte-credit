@@ -42,6 +42,29 @@ $email = $object_result['email-pacte'];
 $subject = $object_result['subject-pacte'];
 $heading = $object_result['subject-pacte'];
 
+switch ($data['question_mount']) {
+
+    case '1':
+        $question_mount = "Inversión";
+        break;
+    case '2':
+        $question_mount = "Gastos Personales y familiares";
+        break;
+    case '3':
+        $question_mount = "Vacaciones";
+        break;
+    case '4':
+        $question_mount = "Educación";
+        break;
+    case '5':
+        $question_mount = "Un Negocio";
+        break;
+    default:
+        $question_mount = "En osio";
+
+}
+
+
 switch ($data['typeDocument']) {
     case '1':
         $type_document = "Cédula de ciudadanía";
@@ -105,7 +128,7 @@ switch ($data['stateLive']) {
         $stateLive = "Comparto un lugar";
         break;
     default:
-        $stateLive = "Otro";
+        $stateLive = "No tengo hijos";
 }
 
 switch ($data['countChildren']) {
@@ -329,7 +352,7 @@ if ($data['doing'] === '3') {
 
 switch ($data['long_working']) {
     case '1':
-        $long_working = "";
+        $long_working = "menos de 1 año";
         break;
     case "2":
         $long_working = "1 año";
@@ -555,7 +578,7 @@ switch ($data['bank']) {
 
 $message = "
     <h2>Información Personal</h2>
-    <p>Utilizar el monto: " . ucfirst($data['question_mount']) . "</p>
+    <p>Utilizar el monto: " . $question_mount . "</p>
     <p>Primer Nombre: " . ucfirst($data['firtsName']) . "</p>
     <p>Segundo Nombre: " . ucfirst($data['secondName']) . "</p>
     <p>Primer Apellido: " . ucfirst($data['lastName']) . "</p>
@@ -569,7 +592,7 @@ $message = "
     <p>Estado Civil: " . $stateCivil . "</p>
     <p>Vives Con: " . $stateLive . "</p>
     <p>Cuantos hijos tienes: " . $countChildren . "</p>
-    <p>Cuantas persnas depende de ti: " . $countDepends . "</p>
+    <p>Cuantas personas depende de ti: " . $countDepends . "</p>
     <p>Cual es tu nivel estudios: " . $nivelStudent . "</p>
     <p>= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =</p>
     <p>Ciudad donde recibe: " . $data['city'] . "</p>
@@ -587,22 +610,35 @@ $message = "
     <p>Caunto Llevas: " . $long_working . "</p>
     <p>Tu empresa es: " . $company_is . "</p>
     <p>Nombre de la empresa: " . $income_month . "</p>
-    <p>En que área esta tu empresa: " . $area_business. "</p>
-    <p>Tipo de contrato: " . $contract. "</p>
-    <p>Ingresos Mensuales: " . $income_month. "</p>
-    <p>Banco: " .$bank."</p>
+    <p>En que área esta tu empresa: " . $area_business . "</p>
+    <p>Tipo de contrato: " . $contract . "</p>
+    <p>Ingresos Mensuales: " . $income_month . "</p>
+    <p>Banco: " . $bank . "</p>
     <p>= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =</p>
-    <h3>Documentación</h3>
-    <p><a href=" . esc_url(plugins_url('./../../../assets/upload/' . $data['url1'], __FILE__)) . " target='__blank' > Descargar Extractos Bancarios </a></p>
-    <p><a href=" . esc_url(plugins_url('./../../../assets/upload/' . $data['url2'], __FILE__)) . " target='__blank' > Descargar Comprobante Nomina </a></p>
-    <p><a href=" . esc_url(plugins_url('./../../../assets/upload/' . $data['url3'], __FILE__)) . " target='__blank' > Descargar Certificación Laboral </a></p>
-    <p><a href=" . esc_url(plugins_url('./../../../assets/upload/' . $data['url4'], __FILE__)) . " target='__blank' > Descargar Declaración Renta </a></p>
-    <p>= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =</p>
-    <h3>" . $data['service'] . "</h3>
+    <h3>Documentación</h3>";
+
+if (!empty($data['url1'])) {
+    $message .= "<p><a href=" . esc_url(plugins_url('./../../../assets/upload/' . $data['url1'], __FILE__)) . " target='__blank' > Descargar Extractos Bancarios </a></p>";
+}
+if (!empty($data['url2'])) {
+    $message .= "<p><a href=" . esc_url(plugins_url('./../../../assets/upload/' . $data['url2'], __FILE__)) . " target='__blank' > Descargar Comprobante Nomina </a></p>";
+}
+if (!empty($data['url3'])) {
+    $message .= "<p><a href=" . esc_url(plugins_url('./../../../assets/upload/' . $data['url3'], __FILE__)) . " target='__blank' > Descargar Certificación Laboral </a></p>";
+}
+if (!empty($data['url4'])) {
+    $message .= "<p><a href=" . esc_url(plugins_url('./../../../assets/upload/' . $data['url4'], __FILE__)) . " target='__blank' > Descargar Declaración Renta </a></p>";
+}
+
+$message .= "<p>= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =</p> 
+	<h3>" . $data['service'] . "</h3>
     <p>Monto Solicitado: " . $data['pressing'] . "</p>
-    <p>Tasa Interes: " . $data['tax'] . "%</p>
+    <p>Tasa Interes: " . $data['calinterest'] . "</p>
+    <p>Tecnología: " . $data['technology'] . "</p>
+    <p>Iva: " . $data['caliva'] . "</p>
+    <p>Servicio Cupo Rotativo: " . $data['calmountroute'] . "</p>
+    <p>Seguros: " . $data['calsure'] . "</p>
     <p>Meses: " . $data['month'] . "</p>
-    <p>Pago por mes: " . $data['result'] . "</p>
-";
+    <p>Pago por mes: " . $data['result'] . "</p>";
 
 send_email_woocommerce_style($email, $subject, $heading, $message);

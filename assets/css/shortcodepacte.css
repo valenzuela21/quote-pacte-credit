@@ -60,7 +60,7 @@ pre, fieldset, input, textarea, table, table *, hr{
 .columnTableLeft .txt-right{
     margin: 0px;
     padding: 0px;
-    text-align: right;
+    text-align: left;
 }
 
 .formQuote .inputFormQuote{

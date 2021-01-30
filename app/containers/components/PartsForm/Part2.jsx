@@ -41,8 +41,6 @@ class Part2 extends Component {
             city,
             addressResidence,
             typeHouse,
-            apto,
-            interior,
             stratum,
             telephone,
             movil,
@@ -162,54 +160,6 @@ class Part2 extends Component {
                                     <option value="2">Alquilada</option>
                                     <option value="3">Familiar</option>
                                 </FormSelect>
-                                {(() => {
-                                    if (this.state.typeHouse === "2") {
-                                        return (
-                                            <Container className="p-0">
-                                                <Row>
-                                                    <Col>
-                                                        <div className="labelContainer">
-                                                            <label
-                                                                htmlFor="#apto"
-                                                                className="labelFormQuoteInfo"
-                                                            >
-                                                                Apto
-                                                            </label>
-                                                        </div>
-                                                        <FormInput
-                                                            className="inputFormQuoteInfo"
-                                                            onChange={this.myChangeHandler}
-                                                            id="#apto"
-                                                            name="apto"
-                                                            type="text"
-                                                            placeholder=""
-                                                            value={apto != undefined ? apto : ""}
-                                                        />
-                                                    </Col>
-                                                    <Col>
-                                                        <div className="labelContainer">
-                                                            <label
-                                                                htmlFor="#interior"
-                                                                className="labelFormQuoteInfo"
-                                                            >
-                                                                Interior
-                                                            </label>
-                                                        </div>
-                                                        <FormInput
-                                                            className="inputFormQuoteInfo"
-                                                            onChange={this.myChangeHandler}
-                                                            id="#interior"
-                                                            name="interior"
-                                                            type="text"
-                                                            placeholder=""
-                                                            value={interior != undefined ? interior : ""}
-                                                        />
-                                                    </Col>
-                                                </Row>
-                                            </Container>
-                                        );
-                                    }
-                                })()}
                             </Col>
                             <Col sm="6" md="6" lg="6" className="p-2">
                                 <div className="labelContainer">
@@ -281,7 +231,6 @@ class Part2 extends Component {
                                     <option value="">Seleccione tipo plan</option>
                                     <option value="1">Pos pago</option>
                                     <option value="2">Prepago</option>
-                                    <option value="3">Tengo los dos</option>
                                 </FormSelect>
                             </Col>
                             <Col sm="6" md="6" lg="6" className="p-2">

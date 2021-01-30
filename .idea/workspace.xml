@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c6fc504f-3dc5-4939-8240-047c152493c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/containers/components/StartQuoteForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/containers/components/StartQuoteForm.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +65,7 @@
       <workItem from="1611944357431" duration="3494000" />
       <workItem from="1611961781479" duration="2011000" />
       <workItem from="1612023047431" duration="3081000" />
-      <workItem from="1612031344316" duration="1054000" />
+      <workItem from="1612031344316" duration="1315000" />
     </task>
     <servers />
   </component>

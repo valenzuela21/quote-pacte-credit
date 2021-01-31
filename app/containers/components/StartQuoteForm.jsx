@@ -52,7 +52,7 @@ export class StartQuoteForm extends React.Component {
 
     //Start Component
     componentDidMount() {
-        this.tabOptions([1, service1.title, service1.tax, defaultPresing, service1.max, service1.min, service1.desc, service1.sure, service1.technology, service1.iva, service1.admin]);
+        this.tabOptions([1, service1.title, service1.tax, defaultPresing, service1.max, service1.min, service1.desc, service1.sure, service1.technology, service1.iva, service1.admin, service2.taxyear]);
         this.setState({
             value_pressing: defaultPresing,
         });
@@ -103,18 +103,14 @@ export class StartQuoteForm extends React.Component {
             });
 
         } else {
-            const {value_moth, tax} = this.state
+            const {value_moth, tax} = this.state;
 
-            let pressing = this.formatCurrency(
-                "es-CO",
-                "COP",
-                null,
-                event.target.value
-            );
+            this.setState({
+                value_pressing: event.target.value
+            })
 
             this.calculateOptions();
-            this.calculateResult(value_moth, tax, event.target.value)
-
+            this.calculateResult(value_moth, tax, event.target.value);
         }
     };
 
@@ -168,6 +164,7 @@ export class StartQuoteForm extends React.Component {
             desc_service: option[6],
             option: option[0],
             tax: option[2],
+            taxyear: option[11],
             value_min: option[3],
             value_max: option[4],
             txt_min: option[5],
@@ -191,21 +188,19 @@ export class StartQuoteForm extends React.Component {
             const {value_pressing, tax, value_moth, technology, sure} = this.state;
 
             //Calculate Interes
-            //$34.900
             let interest = ((value_pressing * tax) * 1) / 100;
             interest = Math.round(interest);
 
-            let admin_interest = Number(this.state.admin);
             //Calculate Cupo Rotativo
+            let admin_interest = Number(this.state.admin);
             let mount_route = (value_pressing * admin_interest) / 100;
 
             //Calculate Technology
             let cal_technology = (value_moth * technology);
             cal_technology = Math.round(cal_technology);
 
-            let admin_iva = Number(this.state.iva);
-
             //Calculate Iva
+            let admin_iva = Number(this.state.iva);
             let iva = (cal_technology * admin_iva) / 100;
             iva = Math.round(iva);
 
@@ -221,11 +216,11 @@ export class StartQuoteForm extends React.Component {
                 cal_sure: admin_sure
             })
 
-        }, 300)
+        }, 100)
 
     }
 
-    //Calculo Total
+    //Calculate Total
     calculateResult(month, tax, pressing) {
 
       setTimeout(()=> {
@@ -249,7 +244,7 @@ export class StartQuoteForm extends React.Component {
           results: result
         });
 
-      }, 500);
+      }, 100);
 
     }
 
@@ -310,7 +305,7 @@ export class StartQuoteForm extends React.Component {
             //Add Data Redux
             this.props.calculate(addData);
 
-        }, 300)
+        }, 100)
 
     }
 
@@ -334,7 +329,7 @@ export class StartQuoteForm extends React.Component {
                                             <Row>
                                                 <Col xs="4" sm="4" md="4" lg="4" className="p-1">
                                                     <Button
-                                                        onClick={(e) => this.tabOptions([1, service1.title, service1.tax, defaultPresing, service1.max, service1.min, service1.desc, service1.sure, service1.technology, service1.iva, service1.admin], e)}
+                                                        onClick={(e) => this.tabOptions([1, service1.title, service1.tax, defaultPresing, service1.max, service1.min, service1.desc, service1.sure, service1.technology, service1.iva, service1.admin, service1.taxyear], e)}
                                                         className={`btnTabForm ${service.option1}`}
                                                         block
                                                     >
@@ -344,7 +339,7 @@ export class StartQuoteForm extends React.Component {
                                                 </Col>
                                                 <Col xs="4" sm="4" md="4" lg="4" className="p-1">
                                                     <Button
-                                                        onClick={(e) => this.tabOptions([2, service2.title, service2.tax, defaultPresing, service2.max, service2.min, service2.desc, service2.sure, service2.technology, service2.iva, service1.admin], e)}
+                                                        onClick={(e) => this.tabOptions([2, service2.title, service2.tax, defaultPresing, service2.max, service2.min, service2.desc, service2.sure, service2.technology, service2.iva, service1.admin, service2.taxyear], e)}
                                                         className={`btnTabForm ${service.option2}`}
                                                         block
                                                     >
@@ -354,7 +349,7 @@ export class StartQuoteForm extends React.Component {
                                                 </Col>
                                                 <Col xs="4" sm="4" md="4" lg="4" className="p-1">
                                                     <Button
-                                                        onClick={(e) => this.tabOptions([3, service3.title, service3.tax, defaultPresing, service3.max, service3.min, service3.desc, service3.sure, service3.technology, service3.iva, service3.admin], e)}
+                                                        onClick={(e) => this.tabOptions([3, service3.title, service3.tax, defaultPresing, service3.max, service3.min, service3.desc, service3.sure, service3.technology, service3.iva, service3.admin, service3.taxyear], e)}
                                                         className={`btnTabForm ${service.option3}`}
                                                         block
                                                     >
@@ -513,6 +508,7 @@ export class StartQuoteForm extends React.Component {
                                             description={this.state.desc_service}
                                             pressing={this.state.value_pressing}
                                             tax={this.state.tax}
+                                            taxyear={this.state.taxyear}
                                             sure={this.state.sure}
                                             iva={this.formatPressing(this.state.iva)}
                                             technology={this.formatPressing(this.state.technology)}

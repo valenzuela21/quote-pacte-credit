@@ -106,12 +106,22 @@ class AdminPacte
 
 
         $xbox->add_field(array(
-            'name' => __( 'Taza de interes', 'wp-pacte-form' ),
+            'name' => __( 'Taza de interes mensual', 'wp-pacte-form' ),
             'id' => 'tax-1',
             'type' => 'text',
             'default' => '',
             'grid' => '2-of-6',
         ));
+
+
+        $xbox->add_field(array(
+            'name' => __( 'Taza de interes anual', 'wp-pacte-form' ),
+            'id' => 'tax_anual-1',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
+        ));
+
 
         $xbox->add_field(array(
             'name' => __( 'Seguro', 'wp-pacte-form' ),
@@ -204,12 +214,20 @@ class AdminPacte
         ));
 
         $xbox->add_field(array(
-            'name' => __( 'Taza de interes', 'wp-pacte-form' ),
+            'name' => __( 'Taza de interes mensual', 'wp-pacte-form' ),
             'id' => 'tax-2',
             'type' => 'text',
             'default' => '',
             'grid' => '2-of-6',
           
+        ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Taza de interes anual', 'wp-pacte-form' ),
+            'id' => 'tax_anual-2',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
         ));
 
         $xbox->add_field(array(
@@ -299,13 +317,22 @@ class AdminPacte
                 'disable_spinner' => false,
             ),
         ));
+
         $xbox->add_field(array(
-            'name' => __( 'Taza de interes', 'wp-pacte-form' ),
+            'name' => __( 'Taza de interes mensual', 'wp-pacte-form' ),
             'id' => 'tax-3',
             'type' => 'text',
             'default' => '',
             'grid' => '2-of-6',
 
+        ));
+
+        $xbox->add_field(array(
+            'name' => __( 'Taza de interes anual', 'wp-pacte-form' ),
+            'id' => 'tax_anual-3',
+            'type' => 'text',
+            'default' => '',
+            'grid' => '2-of-6',
         ));
 
         $xbox->add_field(array(

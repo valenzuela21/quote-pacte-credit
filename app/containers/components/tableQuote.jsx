@@ -10,7 +10,7 @@ const HtmlTooltip = withStyles((theme) => ({
     tooltip: {
         backgroundColor: '#070c36',
         color: '#fff',
-        maxWidth: 220,
+        maxWidth: 290,
         fontSize: theme.typography.pxToRem(12),
         border: '1px solid #070c36',
     },
@@ -114,7 +114,7 @@ export default class TableQuote extends Component {
                                                         placement="right-end"
                                                         title={
                                                             <React.Fragment>
-                                                                {`${description["desc-1"]} por ${this.props.tax} % EA`}
+                                                                {`${description["desc-1"]} por ${this.props.taxyear} % EA`}
                                                             </React.Fragment>
                                                         }
                                                     >
@@ -192,14 +192,7 @@ export default class TableQuote extends Component {
                                                         placement="right-end"
                                                         title={
                                                             <React.Fragment>
-                                                                {(() => {
-                                                                        const desc = description['desc-3'];
-                                                                        if(desc.length >= 120){
-                                                                            return desc.slice(0, 120) + "...";
-                                                                        }else{
-                                                                            return desc;
-                                                                        }
-                                                                })()}
+                                                                {description['desc-3']}
                                                             </React.Fragment>
                                                         }
                                                     >

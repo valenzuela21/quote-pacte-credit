@@ -98,6 +98,7 @@ class ShortcodePacte
         $technology_1 = $xbox->get_field_value('tecnologia-1');
         $iva_1 = $xbox->get_field_value('iva-1');
         $admin_1 = $xbox->get_field_value('admin-1');
+        $tax_anual_1 = $xbox->get_field_value('tax_anual-1');
 
 		//Service 2
 		$service_title2 =  $xbox->get_field_value('title-service2');
@@ -108,6 +109,7 @@ class ShortcodePacte
         $technology_2 = $xbox->get_field_value('tecnologia-2');
         $iva_2 = $xbox->get_field_value('iva-2');
         $admin_2 = $xbox->get_field_value('admin-2');
+        $tax_anual_2 = $xbox->get_field_value('tax_anual-2');
 
 		//Service 3
 		$service_title3 =  $xbox->get_field_value('title-service3');
@@ -118,6 +120,7 @@ class ShortcodePacte
         $technology_3 = $xbox->get_field_value('tecnologia-3');
         $iva_3 = $xbox->get_field_value('iva-3');
         $admin_3 = $xbox->get_field_value('admin-3');
+        $tax_anual_3 = $xbox->get_field_value('tax_anual-3');
 
 		//Month service Config
 		$monthMax = $xbox->get_field_value('month-max');
@@ -137,6 +140,7 @@ class ShortcodePacte
         $desc_date_solicitud = $xbox->get_field_value('desc-date-solicitud');
         $desc_date_admin = $xbox->get_field_value('desc-admin');
         $linkterm = $xbox->get_field_value('link-term');
+
 		// Localize the script with new data
 		$translation_array = array(
 			'email' => $email,
@@ -149,6 +153,7 @@ class ShortcodePacte
 				'min' => $service_min_1,
 				'max' => $service_max_1,
 				'tax' => $tax_1,
+                'taxyear' => $tax_anual_1,
                 'sure'=> $sure_1,
                 'technology' => $technology_1,
                 'iva' => $iva_1,
@@ -160,6 +165,7 @@ class ShortcodePacte
 				'min' => $service_min_2,
 				'max' => $service_max_2,
 				'tax' => $tax_2,
+                'taxyear' => $tax_anual_2,
                 'sure'=> $sure_2,
                 'technology' => $technology_2,
                 'iva' => $iva_2,
@@ -171,6 +177,7 @@ class ShortcodePacte
 				'min' => $service_min_3,
 				'max' => $service_max_3,
 				'tax' => $tax_3,
+                'taxyear' => $tax_anual_3,
                 'sure'=> $sure_3,
                 'technology' => $technology_3,
                 'iva' => $iva_3,

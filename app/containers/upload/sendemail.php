@@ -496,6 +496,15 @@ switch ($data['contract']) {
     case '4':
         $contract = "Temporal";
         break;
+    case '5':
+        $contract = "Nombramiento Provisional";
+        break;
+    case '6':
+        $contract = "Carrera Administrativa";
+        break;
+    case '7':
+        $contract = "Libre Nombramiento y Remoción";
+        break;
     default:
         $contract = "";
 }

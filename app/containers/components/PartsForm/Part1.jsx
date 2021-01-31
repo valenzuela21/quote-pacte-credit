@@ -245,6 +245,7 @@ class Part1 extends Component {
                 <option value="">Tipo Genero</option>
                 <option value="M">Masculino</option>
                 <option value="F">Femenino</option>
+                <option value="Otros">Otros</option>
               </FormSelect>
             </Col>
             <Col sm="6" md="6" lg="6" className="p-2">

@@ -19,6 +19,9 @@ const HtmlTooltip = withStyles((theme) => ({
 export default class TableQuote extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            open: false,
+        }
     }
 
     formatPressing = (number) =>
@@ -33,6 +36,7 @@ export default class TableQuote extends Component {
 
         return formatted;
     }
+
 
     render() {
         return (
@@ -188,7 +192,14 @@ export default class TableQuote extends Component {
                                                         placement="right-end"
                                                         title={
                                                             <React.Fragment>
-                                                                {description['desc-3']}
+                                                                {(() => {
+                                                                        const desc = description['desc-3'];
+                                                                        if(desc.length >= 120){
+                                                                            return desc.slice(0, 120) + "...";
+                                                                        }else{
+                                                                            return desc;
+                                                                        }
+                                                                })()}
                                                             </React.Fragment>
                                                         }
                                                     >

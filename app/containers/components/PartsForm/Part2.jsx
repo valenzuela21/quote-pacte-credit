@@ -531,6 +531,9 @@ class Part2 extends Component {
                                     <option value="2">Indefinido</option>
                                     <option value="3">Prestación de servicios</option>
                                     <option value="4">Temporal</option>
+                                    <option value="5">Nombramiento Provisional</option>
+                                    <option value="6">Carrera Administrativa</option>
+                                    <option value="7">Libre Nombramiento y Remoción</option>
                                 </FormSelect>
                             </Col>
                             <Col sm="6" md="6" lg="6" className="p-2">

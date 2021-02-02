@@ -224,6 +224,9 @@ switch ($data['doing']) {
     case '4':
         $doing = "Ya me pensione";
         break;
+    case '5':
+        $doing = "Formador(a) - Coach";
+        break;
     default:
         $doing = " ";
 }
@@ -453,6 +456,9 @@ switch ($data['area_business']) {
     case '21':
         $area_business = "Transporte-vehículos y partes";
         break;
+    case '22':
+        $area_business = "Capacitación y Formación";
+        break;
     default:
         $area_business = "";
 }
@@ -585,6 +591,7 @@ switch ($data['bank']) {
 }
 
 
+
 $message = "
     <h2>Información Personal</h2>
     <p>Utilizar el monto: " . $question_mount . "</p>
@@ -615,7 +622,7 @@ $message = "
     <p>Que medio de transporte: " . $typeTransport . "</p>
     <p>Como te enteraste de nosotros: " . $communication . "</p>
     <p>Que haces: " . $doing . "</p>
-    <p>Dato opcional: " . $doing . "</p>
+    <p>Dato opcional: " . $doing_working. "</p>
     <p>Caunto Llevas: " . $long_working . "</p>
     <p>Tu empresa es: " . $company_is . "</p>
     <p>Nombre de la empresa: " . $income_month . "</p>

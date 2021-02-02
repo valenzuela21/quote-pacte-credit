@@ -316,6 +316,7 @@ class Part2 extends Component {
                                     <option value="2">Soy empleado</option>
                                     <option value="3">Soy independiente</option>
                                     <option value="4">Ya me pensione</option>
+                                    <option value="5">Formador(a) - Coach</option>
                                 </FormSelect>
 
                                 {(() => {
@@ -486,6 +487,7 @@ class Part2 extends Component {
                                     <option value="19">Telecomunicaciones</option>
                                     <option value="20">Textiles(prendas-calzado)</option>
                                     <option value="21">Transporte-vehículos y partes</option>
+                                    <option value="22">Capacitación y Formación</option>
                                 </FormSelect>
                             </Col>
                             <Col sm="6" md="6" lg="6" className="p-2">

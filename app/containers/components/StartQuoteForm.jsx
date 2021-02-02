@@ -196,7 +196,7 @@ export class StartQuoteForm extends React.Component {
             let mount_route = (value_pressing * admin_interest) / 100;
 
             //Calculate Technology
-            let cal_technology = (value_moth * technology);
+            let cal_technology = technology;
             cal_technology = Math.round(cal_technology);
 
             //Calculate Iva
@@ -223,28 +223,30 @@ export class StartQuoteForm extends React.Component {
     //Calculate Total
     calculateResult(month, tax, pressing) {
 
-      setTimeout(()=> {
+        setTimeout(() => {
 
-        const {cal_iva, cal_mount_route, cal_sure, cal_technology, cal_interest} = this.state;
+            const {cal_iva, cal_mount_route, cal_sure, cal_technology} = this.state;
 
-        let n = month;
-        let i = tax / 100;
+            let n = month;
+            let i = tax / 100;
 
-        let result, factor, m;
-        
-        (n >= 2)? m = cal_interest : m = 0;
-        
-        factor = Math.pow(i + 1, n);
-        result = ((pressing * i) * factor) / (factor - 1);
-        result = Math.round(result) + cal_iva + cal_mount_route + cal_sure + cal_technology - m;
+            let result, factor;
+            factor = Math.pow(i + 1, n);
+            result = ((pressing * i) * factor) / (factor - 1);
 
-        this.setState({
-          value_pressing: pressing,
-          txtFormat: this.formatPressing(pressing),
-          results: result
-        });
+            if(n >= 2) {
+                result = Math.round(result) + cal_iva + cal_technology + cal_sure;
+            }else{
+                result = Math.round(result) + cal_iva + cal_mount_route + cal_sure + cal_technology;
+            }
 
-      }, 100);
+            this.setState({
+                value_pressing: pressing,
+                txtFormat: this.formatPressing(pressing),
+                results: result
+            });
+
+        }, 100);
 
     }
 

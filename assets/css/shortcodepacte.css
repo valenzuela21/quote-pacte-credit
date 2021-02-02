@@ -61,6 +61,7 @@ pre, fieldset, input, textarea, table, table *, hr{
     margin: 0px;
     padding: 0px;
     text-align: left;
+    font-weight: 200;
 }
 
 .formQuote .inputFormQuote{
